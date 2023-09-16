@@ -1,41 +1,57 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const newsletterForm = document.getElementById('newsletterForm');
-
-    newsletterForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+    // Function to handle form submission
+    function handleFormSubmit(event) {
+        event.preventDefault();
 
         // Get user input
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
-        const name = nameInput.value;
-        const email = emailInput.value;
 
-        // Create a new subscriber object
-        const subscriber = {
-            name: name,
-            email: email
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+
+        // Validate user input
+        if (!name || !email) {
+            alert('Please provide both your name and email.');
+            return;
+        }
+
+        // Create a user object
+        const user = {
+            name,
+            email
         };
 
-        // Send the subscriber data to the server
-        fetch('http://localhost:3000/subscribers', {
+        // Send a POST request to the API to add the user
+        fetch('https://digitalmarketing-pi.vercel.app/subscribers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(subscriber)
+            body: JSON.stringify(user)
         })
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 201) {
+                return response.json();
+            } else {
+                throw new Error('Failed to add user');
+            }
+        })
         .then(data => {
-            // Handle success, e.g., show a success message
-            console.log('Subscriber added:', data);
-            alert('Thank you for subscribing!');
-            nameInput.value = ''; // Clear the input fields
+            // Clear the form
+            nameInput.value = '';
             emailInput.value = '';
+
+            // Display a success message
+            alert(`Thank you, ${name}! You've successfully subscribed.`);
         })
         .catch(error => {
-            // Handle errors, e.g., show an error message
             console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
+            alert('Oops! Something went wrong. Please try again later.');
         });
-    });
+    }
+
+    // Get the form element and add a submit event listener
+    const newsletterForm = document.getElementById('newsletterForm');
+    newsletterForm.addEventListener('submit', handleFormSubmit);
 });
