@@ -1,54 +1,48 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const subscribeForm = document.getElementById('newsletterForm');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const subscribeBtn = document.getElementById('subscribeBtn');
-    
-    const apiUrl = 'https://digitalmarketing-d5jppwmih-kelvin-ndoma.vercel.app'; // Update with your Vercel app URL
-    
-    subscribeForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-  
-      // Get the input values
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
-  
-      if (!name || !email) {
-        alert('Please fill in both name and email fields.');
-        return;
-      }
-  
-      // Prepare the data to be sent
-      const data = {
-        name,
-        email,
-        id: Math.floor(Math.random() * 1000) + 1, // Generate a random ID
-      };
-  
-      // Send a POST request to the Vercel-hosted JSON data
-      fetch(`${apiUrl}/subscribers`, { // Use the correct endpoint URL
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((responseData) => {
-          alert(responseData.message);
-          // Clear the form
-          nameInput.value = '';
-          emailInput.value = '';
-        })
-        .catch((error) => {
-          console.error('There was a problem with the fetch operation:', error);
-          alert('Thank you subscribing.');
+// Select the form element and add an event listener for form submission
+const form = document.getElementById('newsletterForm');
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // Prevent the default form submission behavior
+
+  // Get the user input from the form fields
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const userData = {
+    name: nameInput.value,
+    email: emailInput.value,
+    id: generateUserId(), // You can generate a unique ID here
+  };
+
+  // Make a POST request to the server
+  fetch('https://digitalmarketing-d5jppwmih-kelvin-ndoma.vercel.app/subscribers', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        // Handle the error response from the server
+        return response.json().then((errorData) => {
+          throw new Error(errorData.error);
         });
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Handle the success response here
+      console.log(data);
+      // You can also update your UI to indicate success to the user
+    })
+    .catch((error) => {
+      // Handle the error and display it to the user
+      console.error(error.message);
+      // You can update your UI to display the error message to the user
     });
-  });
-  
+});
+
+// Function to generate a unique user ID (you can replace this with your logic)
+function generateUserId() {
+  // Generate a unique ID here and return it
+  return 'uniqueId123';
+}
