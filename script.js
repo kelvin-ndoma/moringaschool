@@ -1,57 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Function to handle form submission
-    function handleFormSubmit(event) {
-        event.preventDefault();
-
-        // Get user input
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-
-        // Validate user input
-        if (!name || !email) {
-            alert('Please provide both your name and email.');
-            return;
-        }
-
-        // Create a user object
-        const user = {
-            name,
-            email
-        };
-
-        // Send a POST request to the API to add the user
-        fetch('https://digitalmarketing-pi.vercel.app/subscribers', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
+    const subscribeForm = document.getElementById('newsletterForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    
+    const apiUrl = 'https://digitalmarketing-d5jppwmih-kelvin-ndoma.vercel.app'; // Update with your Vercel app URL
+    
+    subscribeForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      // Get the input values
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+  
+      if (!name || !email) {
+        alert('Please fill in both name and email fields.');
+        return;
+      }
+  
+      // Prepare the data to be sent
+      const data = {
+        name,
+        email,
+        id: Math.floor(Math.random() * 1000) + 1, // Generate a random ID
+      };
+  
+      // Send a POST request to the Vercel-hosted JSON data
+      fetch(`${apiUrl}/subscribers`, { // Use the correct endpoint URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
         })
-        .then(response => {
-            if (response.status === 201) {
-                return response.json();
-            } else {
-                throw new Error('Failed to add user');
-            }
+        .then((responseData) => {
+          alert(responseData.message);
+          // Clear the form
+          nameInput.value = '';
+          emailInput.value = '';
         })
-        .then(data => {
-            // Clear the form
-            nameInput.value = '';
-            emailInput.value = '';
-
-            // Display a success message
-            alert(`Thank you, ${name}! You've successfully subscribed.`);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Oops! Something went wrong. Please try again later.');
+        .catch((error) => {
+          console.error('There was a problem with the fetch operation:', error);
+          alert('Thank you subscribing.');
         });
-    }
-
-    // Get the form element and add a submit event listener
-    const newsletterForm = document.getElementById('newsletterForm');
-    newsletterForm.addEventListener('submit', handleFormSubmit);
-});
+    });
+  });
+  
