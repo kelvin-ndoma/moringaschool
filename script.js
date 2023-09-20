@@ -1,8 +1,5 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("newsletterForm");
-  const subscribeBtn = document.getElementById("subscribeBtn");
 
   form.addEventListener("submit", function (event) {
       event.preventDefault(); // Prevent the default form submission
@@ -27,12 +24,12 @@ document.addEventListener("DOMContentLoaded", function () {
                   alert("Subscription successful!"); // Show a success message
                   form.reset(); // Clear the form fields
               } else {
-                  alert("Subscription successful!"); // Show an error message
+                  alert("Subscription successful"); // Show an error message
               }
           })
           .catch((error) => {
               console.error("Error:", error);
-              alert("Thank you for subscribing.");
+              alert("An error occurred. Please try again later.");
           });
   });
 });
