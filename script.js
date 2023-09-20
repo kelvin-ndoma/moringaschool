@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const subscriberData = { name, email };
 
       // Send a POST request to your JSON Server API
-      fetch("/api/subscribers", {
+      fetch("https://deploy-json-server-on-vercel.vercel.app/api/subscribers", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
