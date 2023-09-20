@@ -1,233 +1,184 @@
-/* Reset default browser styles */
-* {
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Set a background color and font for the entire page */
-body {
+  }
+  
+  /* Set a background color and font styles */
+  body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-}
-
-/* Style the header */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-}
-
-.header-content {
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  
+  .logo {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  .navbar li {
+    margin-right: 20px;
+  }
+  
+  /* Container styles */
+  .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-}
-
-.logo {
-    width: 150px; /* Adjust the width to your preference */
-    height: auto; /* Maintain the aspect ratio */
-    display: block; /* Ensures the image is centered horizontally */
-    margin: 0 auto; /* Centers the image horizontally */
-    border-radius: 50%; /* Makes the logo circular if desired */
-    border: 2px solid #ff6600; /* Add a border with your desired color */
-    padding: 5px; /* Add some padding to the logo */
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-}
-
-.navbar li {
-    margin-right: 20px;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.navbar a:hover {
-    color: #ff6600;
-}
-
-/* Style the container */
-.container {
-    max-width: 1200px;
-    margin: 20px auto;
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 20px;
-}
-
-.left {
-    flex: 1;
-    padding: 20px;
-}
-
-.right {
-    flex: 1;
-    padding: 20px;
-}
-
-.container h1 {
-    font-size: 36px;
+    align-items: center;
+  }
+  
+  .container h1 {
+    font-size: 2.5rem;
     margin-bottom: 20px;
-}
-
-.container p {
-    font-size: 18px;
+  }
+  
+  .container p {
+    font-size: 1.2rem;
     margin-bottom: 20px;
-}
-
-/* Style the newsletter form */
-#newsletterForm {
-    margin-top: 20px;
+  }
+  
+  /* Newsletter form styles */
+  #newsletterForm {
+    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-}
-
-#newsletterForm label {
+  }
+  
+  #newsletterForm label {
     font-weight: bold;
-    margin-bottom: 5px;
-}
-
-#newsletterForm input {
-    padding: 10px;
+  }
+  
+  #newsletterForm input[type="text"],
+  #newsletterForm input[type="email"],
+  #subscribeBtn {
     margin-bottom: 10px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#subscribeBtn {
-    background-color: #ff6600;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  #subscribeBtn {
+    background-color: #007BFF;
     color: #fff;
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-}
-
-#subscribeBtn:hover {
-    background-color: #e65300;
-}
-
-/* Style the benefits section */
-.benefits {
-    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #subscribeBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Benefits section styles */
+  .benefits {
+    font-size: 1.1rem;
     margin-top: 20px;
-}
-
-/* Style the courses section */
-#courses {
-    background-color: #fff;
-    padding: 40px 0;
-    text-align: center; /* Center-align the course headings */
-}
-
-.container .course {
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* About Us section styles */
+  #aboutus {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  #aboutus h2 {
+    font-size: 2rem;
     margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Courses section styles */
+  #courses {
+    padding: 40px 20px;
     text-align: center;
-}
-
-.course h3 {
-    font-size: 20px;
-    color: #333;
-    margin: 0;
-}
-
-.course img {
-    max-width: 100%; /* Make the images responsive within their containers */
-    height: auto;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Style the frontend and backend images */
-.frontend-image img,
-.backend-image img {
-    max-width: 100%; /* Make the images responsive within their containers */
-    height: auto;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Adjust the styling of frontend and backend sections as needed */
-.frontend-image {
-    /* Add styles specific to the frontend image container */
-    text-align: center;
-}
-
-.backend-image {
-    /* Add styles specific to the backend image container */
-    text-align: center;
-}
-
-/* Style the footer */
-footer {
+  }
+  
+  #courses h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .course {
+    margin-bottom: 20px;
+  }
+  
+  /* Footer styles */
+  footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 10px 0;
-}
-
-/* Style the "Explore Blogs" button */
-.btn {
-    display: inline-block;
-    background-color: #ff6600;
-    color: #fff;
-    font-weight: bold;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-.btn:hover {
-    background-color: #e65300;
-}
-
-/* Make the page responsive */
-@media (max-width: 768px) {
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        align-items: center;
+      flex-direction: column;
     }
-
-    .left, .right {
-        flex: 1;
-        width: 100%;
+  
+    .container h1 {
+      font-size: 2rem;
     }
-
+  
     .navbar {
-        margin-top: 20px;
+      margin-top: 20px;
     }
-
+  
     .navbar ul {
-        flex-direction: column;
-        align-items: center;
+      flex-direction: column;
     }
-
+  
     .navbar li {
-        margin: 10px 0;
+      margin-bottom: 10px;
     }
-
-    .course {
-        text-align: center;
+  
+    .right img {
+      max-width: 100%;
+      height: auto;
     }
-}
+  }
+  
+  @media (max-width: 576px) {
+    .container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .container p {
+      font-size: 1rem;
+    }
+  }
+  
