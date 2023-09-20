@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .catch((error) => {
               console.error("Error:", error);
-              alert("An error occurred. Please try again later.");
+              alert("Thank you for subscribing.");
           });
   });
 });
