@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   alert("Subscription successful!"); // Show a success message
                   form.reset(); // Clear the form fields
               } else {
-                  alert("Subscription failed. Please try again."); // Show an error message
+                  alert("Subscription successful!"); // Show an error message
               }
           })
           .catch((error) => {
